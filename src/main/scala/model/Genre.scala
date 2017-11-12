@@ -1,6 +1,6 @@
 package model
 
-import slick.lifted.Tag
+import slick.lifted.{TableQuery, Tag}
 import slick.jdbc.PostgresProfile.api._
 
 /**
@@ -13,4 +13,8 @@ class GenreTable (tag: Tag) extends Table[Genre](tag, "genre") {
   val description = column[Option[String]]("description")
 
   def * = (id.?, title, description) <> (Genre.apply _ tupled, Genre.unapply)
+}
+
+object GenreTable{
+  val table =TableQuery[GenreTable]
 }

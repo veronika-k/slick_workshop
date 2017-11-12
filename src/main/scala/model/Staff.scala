@@ -1,5 +1,5 @@
 package model
-import slick.lifted.Tag
+import slick.lifted.{TableQuery, Tag}
 import slick.jdbc.PostgresProfile.api._
 
 
@@ -15,4 +15,7 @@ class StaffTable (tag: Tag) extends Table[Staff](tag, "staff") {
   val age = column[Int]("age")
 
   def * = (id.?, name, rate, age) <> (Staff.apply _ tupled, Staff.unapply)
+}
+object StaffTable{
+  val table =TableQuery[StaffTable]
 }
